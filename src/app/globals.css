@@ -7,7 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -46,6 +46,65 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ── Utility: hide scrollbar but keep scrollability ─────────── */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Leaflet map overrides ───────────────────────────────────── */
+
+/* All clickable SVG paths (election states) show pointer */
+.leaflet-interactive {
+  cursor: pointer !important;
+}
+
+/* Non-election states — default arrow cursor */
+.leaflet-non-interactive {
+  cursor: default !important;
+  pointer-events: none;
+}
+
+/* Election state tooltip */
+.leaflet-tooltip-election {
+  background: rgba(255, 107, 0, 0.95) !important;
+  color: #fff !important;
+  border: 1px solid #ff8c38 !important;
+  border-radius: 8px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  padding: 5px 12px !important;
+  box-shadow: 0 4px 16px rgba(255, 107, 0, 0.35) !important;
+}
+
+/* Dark tooltip for non-election states */
+.leaflet-tooltip-dark {
+  background: rgba(13, 17, 23, 0.92) !important;
+  color: #9ca3af !important;
+  border: 1px solid #374151 !important;
+  border-radius: 6px !important;
+  font-size: 11px !important;
+  padding: 3px 8px !important;
+}
+
+.leaflet-tooltip-election::before,
+.leaflet-tooltip-dark::before {
+  display: none !important;
+}
+
+/* Zoom controls — dark theme */
+.leaflet-control-zoom a {
+  background: #161b22 !important;
+  color: #e6edf3 !important;
+  border-color: #30363d !important;
+}
+.leaflet-control-zoom a:hover {
+  background: #1f2937 !important;
 }
 
 :root {
